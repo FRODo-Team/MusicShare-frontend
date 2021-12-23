@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import Topbar from './Topbar';
 import Tabbar from './Tabbar';
 import Chat from './Chat';
+import CreateChat from './CreateChat';
+import PlaylistSettings from './PlaylistSettings';
 import { SIZES } from '../styles';
 
 class App extends Component {
@@ -28,14 +30,14 @@ class App extends Component {
                         <Grid item xs={8} >
                             <Box sx={{ display: 'flex', minHeight: '100%', minWidth: '100%' }} >
                                 <Divider orientation="vertical" flexItem/>
-                                <Chat sx={{
+                                <PlaylistSettings sx={{
                                     bgcolor: 'white',
                                     //display: 'flex',
                                     minWidth: '100%',
                                     verticalAlign: 'bottom',
                                     display: 'table-cell',
                                 }} >
-                                </Chat>
+                                </PlaylistSettings>
                             </Box>
                         </Grid>
                     </Grid>

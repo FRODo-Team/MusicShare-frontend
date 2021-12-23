@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,77 +10,59 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
+import Dialog from './Dialog';
+import ListOfClickable from './ListOfClickable';
 import { SIZES } from '../styles';
 
-function renderRow(props) {
-    const {index, style} = props;
-
-    return (
-        <ListItem style={style} key={index} component="div" disablePadding>
-            <ListItemButton>
-                <ListItemText primary={`Item ${index + 1}`} />
-            </ListItemButton>
-        </ListItem>
-    );
-}
-
 export default function Dialogs() {
-    const [selectedIndex, setSelectedIndex] = React.useState(-1);
-
-    const handleItemClick = (event, index) => {
-        setSelectedIndex(index);
-    };
-
     return (
-        <Box style={{ maxHeight: `calc(${SIZES.content.height} - ${SIZES.tablist.height})`, minHeight: '100%', overflow: 'auto' }}>
-        <List style={{ maxHeight: '100%', overflow: 'auto' }}>
-            <Divider component="li" />
-            <ListItemButton
-                alignItems="flex-start"
-                selected={selectedIndex === 0}
-                onClick={(event) => handleItemClick(event, 0)}
+        <Box
+            sx={{
+                height: '100%'
+            }}
+        >
+            <ListOfClickable sx={{ maxHeight: `calc(${SIZES.content.height} - ${SIZES.tablist.height})`, minHeight: '100%' }}>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+                <Dialog/>
+            </ListOfClickable>
+
+            <Fab
+                sx={{
+                    float: 'left',
+                    position: 'relative',
+                    bottom: 65,
+                    left: 335,
+                }}
+                color="primary"
             >
-                <ListItemText
-                    primary="Duuude"
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.secondary"
-                            >
-                                How do you do?
-                            </Typography>
-                        </React.Fragment>
-                    }
-                />
-            </ListItemButton>
-            <Divider component="li" />
-            <ListItemButton
-                alignItems="flex-start"
-                selected={selectedIndex === 1}
-                onClick={(event) => handleItemClick(event, 1)}
-            >
-                <ListItemText
-                    primary="Duuude"
-                    secondary={
-                        <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.secondary"
-                            >
-                                How do you do?
-                            </Typography>
-                        </React.Fragment>
-                    }
-                />
-            </ListItemButton>
-            <Divider component="li" />
-        </List>
+                <AddIcon/>
+            </Fab>
         </Box>
     );
 }

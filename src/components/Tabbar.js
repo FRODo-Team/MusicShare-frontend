@@ -7,6 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 
 import Dialogs from './Dialogs'
+import Playlists from './Playlists'
 import { SIZES } from '../styles';
 
 export default function Tabbar(props) {
@@ -27,10 +28,12 @@ export default function Tabbar(props) {
                     <Tab label="Playlists" value="playlists" />
                 </TabList>
 
-                <TabPanel value="dialogs" sx={{ p: 0 }}>
+                <TabPanel value="dialogs" sx={{ p: 0, height: SIZES.list.height }}>
                     <Dialogs/>
                 </TabPanel>
-                <TabPanel value="playlists">Item Two</TabPanel>
+                <TabPanel value="playlists" sx={{ p: 0, height: SIZES.list.height }}>
+                    <Playlists/>
+                </TabPanel>
             </TabContext>
         </Box>
     )

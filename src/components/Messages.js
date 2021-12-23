@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -15,13 +15,19 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { SIZES } from '../styles';
 
 export default function Messages(props) {
+    useEffect(() => {
+        var messages = document.getElementById('messages');
+        messages.scrollTop = messages.scrollHeight;
+    })
+
     return (
         <Box
+            id="messages"
             sx={{
                 ml: 2,
                 mr: 2,
                 mt: 1,
-                mb: 1,
+                mb: 0,
             }}
             style={{
                 maxHeight: SIZES.messages.height,

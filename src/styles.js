@@ -8,6 +8,9 @@ export const SIZES = {
     tablist: {
         height: '5vh',
     },
+    list: {
+        height: `calc(100vh - 5vh - ${theme.spacing(2)} - ${theme.spacing(4)} - 5vh)`,
+    },
     messageForm: {
         height: `calc(5vh + ${theme.spacing(2)} + ${theme.spacing(2)})`,
     },
