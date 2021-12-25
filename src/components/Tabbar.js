@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 
-import Dialogs from './Dialogs'
+import Dialogs from '../views/Dialogs'
 import Playlists from './Playlists'
 import { SIZES } from '../styles';
 

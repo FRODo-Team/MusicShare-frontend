@@ -4,15 +4,16 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Topbar from './Topbar';
 import Tabbar from './Tabbar';
 import Chat from './Chat';
-import CreateChat from './CreateChat';
+import CreateChat from '../views/CreateChat';
 import PlaylistSettings from './PlaylistSettings';
 import { SIZES } from '../styles';
 
 export default function Main(props) {
+
     return (
         <Grid container columnSpacing={0} sx={{
             height: SIZES.content.height,
@@ -25,14 +26,40 @@ export default function Main(props) {
             <Grid item xs={8} >
                 <Box sx={{ display: 'flex', minHeight: '100%', minWidth: '100%' }} >
                     <Divider orientation="vertical" flexItem/>
-                    <PlaylistSettings sx={{
-                        bgcolor: 'white',
-                        //display: 'flex',
-                        minWidth: '100%',
-                        verticalAlign: 'bottom',
-                        display: 'table-cell',
-                    }} >
-                    </PlaylistSettings>
+                    <Switch>
+                        <Route path='/new'>
+                            <CreateChat sx={{
+                                bgcolor: 'white',
+                                //display: 'flex',
+                                minWidth: '100%',
+                                verticalAlign: 'bottom',
+                                display: 'table-cell',
+                            }} >
+                            </CreateChat>
+                        </Route>
+                        <Route path='/chats'>
+                            <Chat sx={{
+                                bgcolor: 'white',
+                                //display: 'flex',
+                                minWidth: '100%',
+                                verticalAlign: 'bottom',
+                            }} >
+                            </Chat>
+                        </Route>
+                        <Route path='/playlists'>
+                            <PlaylistSettings sx={{
+                                bgcolor: 'white',
+                                //display: 'flex',
+                                minWidth: '100%',
+                                verticalAlign: 'bottom',
+                                display: 'table-cell',
+                            }} >
+                            </PlaylistSettings>
+                        </Route>
+                        <Route path="/">
+                            <div/>
+                        </Route>
+                    </Switch>
                 </Box>
             </Grid>
         </Grid>

@@ -51,6 +51,9 @@ export default function ListOfClickable(props) {
 
     const handleItemClick = (event, index) => {
         setSelectedIndex(index);
+        if (props.cb) {
+            props.cb(index);
+        }
     };
 
     return (

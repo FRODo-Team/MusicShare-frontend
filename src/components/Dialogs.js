@@ -12,12 +12,13 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { NavLink } from 'react-router-dom';
 
 import Dialog from './Dialog';
 import ListOfClickable from './ListOfClickable';
 import { SIZES } from '../styles';
 
-export default function Dialogs() {
+export default function Dialogs(props) {
     return (
         <Box
             sx={{
@@ -52,6 +53,10 @@ export default function Dialogs() {
                 <Dialog/>
             </ListOfClickable>
 
+            <NavLink to={ (location) => {
+                props.getContacts();
+                return "/new";
+            } }>
             <Fab
                 sx={{
                     float: 'left',
@@ -63,6 +68,7 @@ export default function Dialogs() {
             >
                 <AddIcon/>
             </Fab>
+            </NavLink>
         </Box>
     );
 }

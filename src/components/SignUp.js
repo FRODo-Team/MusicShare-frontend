@@ -19,6 +19,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Redirect } from 'react-router-dom';
 
 import { SIZES } from '../styles';
 
@@ -26,6 +27,12 @@ export default function SignUp(props) {
     props.sx.height = SIZES.content.height,
     props.sx.minHeight = SIZES.content.height,
     props.sx.maxHeight = SIZES.content.height
+
+    const {signUp, isLogin, ...restProps} = props
+
+    if (isLogin) {
+        return <Redirect to="/" />
+    }
 
     const [values, setValues] = React.useState({
         password: '',
@@ -50,9 +57,13 @@ export default function SignUp(props) {
         event.preventDefault();
     };
 
+    const handleButton = () => {
+        signUp(values.username, values.password, values.nickname, values.email)
+    }
+
     return (
         <Stack
-            {...props}
+            {...restProps}
             justifyContent="center"
             spacing={2}
             alignItems="center"
@@ -113,7 +124,7 @@ export default function SignUp(props) {
                 />
             </FormControl>
 
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleButton} >
                 Sign up
             </Button>
         </Stack>
