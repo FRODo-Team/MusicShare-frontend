@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 
 import MessageForm from './MessageForm';
-import Messages from './Messages';
+import Messages from '../views/Messages';
 
 export default function Chat(props) {
     const params = useParams();
