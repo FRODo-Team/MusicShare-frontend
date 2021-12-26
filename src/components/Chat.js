@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -8,11 +8,19 @@ import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import {
+  useParams
+} from "react-router-dom";
 
 import MessageForm from './MessageForm';
 import Messages from './Messages';
 
 export default function Chat(props) {
+    const params = useParams();
+    console.log(params)
+
+    useEffect(() => { props.setCurrentChat(parseInt(params.id)) })
+
     return (
         <Box {...props}>
             <Stack

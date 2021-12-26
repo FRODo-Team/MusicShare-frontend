@@ -12,13 +12,37 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import Dialog from './Dialog';
 import ListOfClickable from './ListOfClickable';
 import { SIZES } from '../styles';
 
 export default function Dialogs(props) {
+    let history = useHistory();
+
+    const chatsToDialogs = (chats) => {
+        let dialogs = []
+        chats.forEach((chat_, chatId) => {
+            const chat = chat_.toJSON();
+            let last_message = null;
+            if (chat.messages.size > 0) {
+                last_message = chat.messages.last().content;
+                console.log(last_message)
+            }
+            dialogs.push(
+                <Dialog
+                    key={chatId}
+                    nickname={chat.nicknames.join(', ')}
+                    last_message={last_message}
+                    isCurrent={() => props.currentChat === chatId}
+                    cb={() => { history.push(`/chats/${chatId}`); }}
+                />
+            )
+        })
+        return dialogs;
+    }
+
     return (
         <Box
             sx={{
@@ -26,31 +50,7 @@ export default function Dialogs(props) {
             }}
         >
             <ListOfClickable sx={{ maxHeight: `calc(${SIZES.content.height} - ${SIZES.tablist.height})`, minHeight: '100%' }}>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
-                <Dialog/>
+                {chatsToDialogs(props.chats)}
             </ListOfClickable>
 
             <NavLink to={ (location) => {

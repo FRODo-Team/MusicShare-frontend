@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
@@ -7,12 +7,19 @@ import Paper from '@mui/material/Paper';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Tabbar from './Tabbar';
-import Chat from './Chat';
+import Chat from '../views/Chat';
 import CreateChat from '../views/CreateChat';
 import PlaylistSettings from './PlaylistSettings';
 import { SIZES } from '../styles';
 
 export default function Main(props) {
+    if (!props.isLogin) {
+        return <Redirect to="/login" />
+    }
+
+    useEffect(() => {
+        props.getChats();
+    })
 
     return (
         <Grid container columnSpacing={0} sx={{
@@ -27,6 +34,9 @@ export default function Main(props) {
                 <Box sx={{ display: 'flex', minHeight: '100%', minWidth: '100%' }} >
                     <Divider orientation="vertical" flexItem/>
                     <Switch>
+                        <Route exact path="/">
+                            <div/>
+                        </Route>
                         <Route path='/new'>
                             <CreateChat sx={{
                                 bgcolor: 'white',
@@ -37,7 +47,7 @@ export default function Main(props) {
                             }} >
                             </CreateChat>
                         </Route>
-                        <Route path='/chats'>
+                        <Route path='/chats/:id'>
                             <Chat sx={{
                                 bgcolor: 'white',
                                 //display: 'flex',
@@ -46,7 +56,7 @@ export default function Main(props) {
                             }} >
                             </Chat>
                         </Route>
-                        <Route path='/playlists'>
+                        <Route path='/playlists/:id'>
                             <PlaylistSettings sx={{
                                 bgcolor: 'white',
                                 //display: 'flex',
@@ -55,9 +65,6 @@ export default function Main(props) {
                                 display: 'table-cell',
                             }} >
                             </PlaylistSettings>
-                        </Route>
-                        <Route path="/">
-                            <div/>
                         </Route>
                     </Switch>
                 </Box>

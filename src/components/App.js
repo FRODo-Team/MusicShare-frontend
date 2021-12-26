@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 
-import Main from './Main';
+import Main from '../views/Main';
 import SignIn from '../views/SignIn';
 import SignUp from '../views/SignUp';
 import Topbar from '../views/Topbar';

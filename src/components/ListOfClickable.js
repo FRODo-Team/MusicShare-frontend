@@ -16,12 +16,13 @@ function getListItems(items, index, handler) {
     const listItems = []
 
     for (let idx = 0; idx < items.length; idx += 1) {
+        console.log(items[idx].props)
         listItems.push(
             <ListItemButton
                 key={2 * idx}
                 alignItems="flex-start"
-                selected={index === idx}
-                onClick={(event) => handler(event, idx)}
+                selected={items[idx].props.isCurrent()}
+                onClick={(event) => items[idx].props.cb()}
             >
                 { items[idx] }
             </ListItemButton>
