@@ -9,12 +9,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { NavLink, useHistory } from 'react-router-dom';
+import { List as ImList } from 'immutable';
 
 import Playlist from './Playlist';
 import ListOfClickable from './ListOfClickable';
 import { SIZES } from '../styles';
 
-export default function Playlists() {
+export default function Playlists(props) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -25,6 +27,21 @@ export default function Playlists() {
         setOpen(false);
     };
 
+    let history = useHistory()
+
+    const items = ImList(props.playlists.values()).map((p) => (
+        <Playlist
+            key={p.get('id')}
+            title={p.get('title')}
+            songsCount={p.get('songsCount')}
+            isCurrent={() => p.get('id') == props.currentPlaylist}
+            cb={() => {history.push(`/playlists/${p.get('id')}`)}}
+        />
+    )).toArray()
+    console.log(items)
+
+    const [newPlaylistName, setNewPlaylistName] = React.useState('');
+
     return (
         <Box
             sx={{
@@ -32,9 +49,7 @@ export default function Playlists() {
             }}
         >
             <ListOfClickable sx={{ maxHeight: `calc(${SIZES.content.height} - ${SIZES.tablist.height})`, minHeight: '100%' }}>
-                <Playlist/>
-                <Playlist/>
-                <Playlist/>
+                {items}
             </ListOfClickable>
 
             <Fab
@@ -64,11 +79,13 @@ export default function Playlists() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        value={newPlaylistName}
+                        onChange={(event) => setNewPlaylistName(event.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Create</Button>
+                    <Button onClick={() => { props.createPlaylist(newPlaylistName); handleClose(); }}>Create</Button>
                 </DialogActions>
             </MUIDialog>
         </Box>

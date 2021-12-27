@@ -54,7 +54,6 @@ export default function Dialogs(props) {
             </ListOfClickable>
 
             <NavLink to={ (location) => {
-                props.getContacts();
                 return "/new";
             } }>
             <Fab

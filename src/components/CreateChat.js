@@ -13,13 +13,6 @@ import Input from '@mui/material/Input';
 
 import ListOfClickable from './ListOfClickable';
 
-function toListItems(contacts) {
-    var idx = 0;
-    return contacts.map((contact) => (
-        <ListItemText primary={contact.nickname} key={idx++}/>
-    ))
-}
-
 export default function CreateChat(props) {
     const handleNicknameChange = (event) => {
         props.getContacts(event.target.value);
@@ -27,8 +20,23 @@ export default function CreateChat(props) {
 
     const [selected, setSelected] = useState(-1);
 
+    const {contacts, ...restProps} = props;
+
+    let idx = 0;
+    const items = contacts.map((contact) => (
+        <Box
+            key={idx++}
+            isCurrent={() => contact.id == selected }
+            cb={() => setSelected(contact.id)}
+        >
+        <ListItemText
+            primary={contact.nickname}
+        />
+        </Box>
+    ))
+
     return (
-        <Box {...props}>
+        <Box {...restProps}>
             <Container sx={{ height: '100%' }}>
             <Stack
                 sx={{ minWidth: '100%', height: '100%' }}
@@ -37,10 +45,10 @@ export default function CreateChat(props) {
                 alignItems="center"
             >
                 <Input placeholder="Nickname" onChange={handleNicknameChange} />
-                <ListOfClickable sx={{ maxHeight: '40vh', minWidth: '50%' }} cb={idx => { setSelected(idx); }}>
-                    { toListItems(props.contacts) }
+                <ListOfClickable sx={{ maxHeight: '40vh', minWidth: '50%' }}>
+                    { items }
                 </ListOfClickable>
-                <Button variant="contained" color="primary" onClick={event => { console.log(props.contacts[selected]) }} >
+                <Button variant="contained" color="primary" onClick={event => { props.createChat(selected); }} >
                     Start conversation
                 </Button>
             </Stack>

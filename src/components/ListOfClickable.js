@@ -16,7 +16,6 @@ function getListItems(items, index, handler) {
     const listItems = []
 
     for (let idx = 0; idx < items.length; idx += 1) {
-        console.log(items[idx].props)
         listItems.push(
             <ListItemButton
                 key={2 * idx}

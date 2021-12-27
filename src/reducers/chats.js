@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-import { fromJS, Map as ImMap } from 'immutable';
+import { fromJS, Map as ImMap, List as ImList } from 'immutable';
 
 const initialState = ImMap({});
 

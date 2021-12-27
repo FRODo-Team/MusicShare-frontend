@@ -1,10 +1,10 @@
 import * as types from '../constants/ActionTypes';
 
-const initialState = null;
+const initialState = [];
 
-export default function currentChat(state = initialState, action) {
+export default function songs(state = initialState, action) {
     switch (action.type) {
-    case types.SET_CURRENT_CHAT:
+    case types.GET_SONGS:
         return action.value;
     default:
         return state;

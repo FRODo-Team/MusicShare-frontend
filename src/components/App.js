@@ -19,6 +19,14 @@ import { SIZES } from '../styles';
 export default function App(props) {
     useEffect(() => {
         props.loadUserFromMemory();
+
+        const interval = setInterval(() => {
+            if (props.isLogin && props.since != "Invalid date") {
+                props.updateMessages(props.since)
+            }
+        }, 1000)
+
+        return () => { clearInterval(interval); }
     })
 
     return (

@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 
 import Dialogs from '../components/Dialogs'
 import {
-    getContacts,
     setCurrentChat,
 } from '../actions'
 
@@ -12,7 +11,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getContacts: (nickname = null) => dispatch(getContacts(nickname)),
     setCurrentChat: (chatId) => dispatch(setCurrentChat(chatId)),
 })
 

@@ -9,7 +9,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Tabbar from './Tabbar';
 import Chat from '../views/Chat';
 import CreateChat from '../views/CreateChat';
-import PlaylistSettings from './PlaylistSettings';
+import PlaylistSettings from '../views/PlaylistSettings';
 import { SIZES } from '../styles';
 
 export default function Main(props) {
@@ -19,6 +19,9 @@ export default function Main(props) {
 
     useEffect(() => {
         props.getChats();
+        props.getPlaylists();
+        props.getContacts();
+        props.getSongs();
     })
 
     return (

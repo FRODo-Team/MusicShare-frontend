@@ -7,7 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 
 import Dialogs from '../views/Dialogs'
-import Playlists from './Playlists'
+import Playlists from '../views/Playlists'
 import { SIZES } from '../styles';
 
 export default function Tabbar(props) {

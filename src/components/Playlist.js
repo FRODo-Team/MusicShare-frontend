@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 export default function Playlist(props) {
     return (
         <ListItemText
-            primary="Title"
+            primary={props.title}
             secondary={
                 <React.Fragment>
                     <Typography
@@ -14,7 +14,7 @@ export default function Playlist(props) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        8 songs
+                        {props.songsCount} songs
                     </Typography>
                 </React.Fragment>
             }
